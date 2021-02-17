@@ -62,7 +62,7 @@ struct point random_point()
  */
 int inside(struct point p)
 {
-	return p.x * p.x + ________;
+	return p.x * p.x + p.y * p.y < 1;
 }
 
 /* Step 5. Write the function that computes pi
@@ -73,21 +73,21 @@ double montecarlo_pi(int n_sample)
 
 	/* 5.1. What should go into this loop?
 	 */
-	for (int i = 0; ________; ________) {
+	for (int i = 0; i < n_sample; ++i) {
 		/* 5.2. Call which function to get a point?
 		 */
-		struct point p = ________;
+		struct point p = random_point();
 
 		/* 5.3. Call which function to check if the point is
 		 * inside the circle?
 		 */
-		if (________)
+		if (inside(p))
 			++n_inside;
 	}
 
 	/* 5.4. What formula to use to compute pi?
 	 */
-	return ________;
+	return (4.0 * n_inside) / n_sample;
 }
 
 /* Step 6. Put montecarlo_pi() inside main() to compute pi
