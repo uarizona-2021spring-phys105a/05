@@ -31,7 +31,7 @@
  * C import library in a very different way compared to python.
  */
 #include <time.h>   /* required for time() */
-#include <stdlib.h> /* required for srand() and rand() */
+#include <stdlib.h> /* required for srand() and rand(), RAND_MAX */
 #include <stdio.h>  /* required for printf() */
 
 /* Step 2. Define a two-dimension point
@@ -53,7 +53,7 @@ struct point random_point()
 	};
 }
 
-/* Step 3. Check if a point is in the quarter circle
+/* Step 4. Check if a point is in the quarter circle
  *
  * What equation should go into this function?  The first part of the
  * equation is provided as a sampmle to access the x-coordinate of the
@@ -65,32 +65,32 @@ int inside(struct point p)
 	return p.x * p.x + ________;
 }
 
-/* Step 4. Write the function that computes pi
+/* Step 5. Write the function that computes pi
  */
 double montecarlo_pi(int n_sample)
 {
 	int n_inside = 0;
 
-	/* 4.1. What should go into this loop?
+	/* 5.1. What should go into this loop?
 	 */
 	for (int i = 0; ________; ________) {
-		/* 4.2. Call which function to get a point?
+		/* 5.2. Call which function to get a point?
 		 */
 		struct point p = ________;
 
-		/* 4.3. Call which function to check if the point is
+		/* 5.3. Call which function to check if the point is
 		 * inside the circle?
 		 */
 		if (________)
 			++n_inside;
 	}
 
-	/* 4.4. What formula to use to compute pi?
+	/* 5.4. What formula to use to compute pi?
 	 */
 	return ________;
 }
 
-/* Step 5. Put montecarlo_pi() inside main() to compute pi
+/* Step 6. Put montecarlo_pi() inside main() to compute pi
  */
 int main(int argc, char *argv[])
 {
@@ -98,7 +98,10 @@ int main(int argc, char *argv[])
 
 	srand(time(NULL)); /* seed the random number generator using
 	                      the current time */
-	printf("%d %g\n", n_sample, montecarlo_pi(n_sample)); /* output */
+
+	double pi = montecarlo_pi(n_sample);
+
+	printf("%d %g\n", n_sample, pi); /* output */
 
 	return 0;
 }
